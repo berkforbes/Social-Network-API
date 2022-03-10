@@ -1,6 +1,6 @@
-const { truncate } = require("fs");
 const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
+// import for email validator
+import { isEmail } from 'validator';
 
 const UserSchema = new Schema({
   username: {
@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    vaidate: [validateEmail, "Please enter a valid email address"],
+    vaidate: [isEmail, "Please enter a valid email address"],
   },
   thoughts: [
     {
