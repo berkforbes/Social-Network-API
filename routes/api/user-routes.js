@@ -1,13 +1,20 @@
 const router = require("express").Router();
+const {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+  addFriend,
+  deleteFriend,
+} = require("../../controllers/user-controller");
 
-// Import all of the API routes from /api/index.js
-const apiRoutes = require("./api");
+router.route("/").get(getAllUsers).post(createUser);
 
-// add prefix of `/api` to all of the api routes imported from the `api` directory
-router.use("/api", apiRoutes);
+router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 
-router.use((req, res) => {
-  res.status(404).send("<h1>😝 404 Error!</h1>");
-});
+router.route("/:userId/friends/:friendId").post(addFriend);
+
+router.route("/:userId/friends/:friendId").delete(deleteFriend);
 
 module.exports = router;
