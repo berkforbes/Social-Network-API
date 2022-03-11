@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 // import for email validator
-import { isEmail } from "validator";
+// import { isEmail } from "validator";
 
 const UserSchema = new Schema(
   {
@@ -14,7 +14,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      vaidate: [isEmail, "Please enter a valid email address"],
+      // validate: [isEmail, "Please enter a valid email address"],
     },
     thoughts: [
       {
@@ -43,5 +43,6 @@ UserSchema.virtual("friendCount").get(function () {
   return this.friends.reduce((total, friend) => total + friend.length + 1, 0);
 });
 
+const User = model('User', UserSchema)
 // export the User model
 module.exports = User;
