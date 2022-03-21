@@ -1,20 +1,18 @@
 const { Schema, model } = require("mongoose");
-// import for email validator
-// import { isEmail } from "validator";
-
+const dateFormat = require('../utils/dateFormat')
 const UserSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: 'Username is required',
       trim: true,
       unique: true,
     },
     email: {
       type: String,
-      required: true,
+      required: 'Email is required',
       unique: true,
-      // validate: [isEmail, "Please enter a valid email address"],
+      match: [/.+@.+\..+/]
     },
     thoughts: [
       {
@@ -44,5 +42,6 @@ UserSchema.virtual("friendCount").get(function () {
 });
 
 const User = model('User', UserSchema)
+
 // export the User model
 module.exports = User;
