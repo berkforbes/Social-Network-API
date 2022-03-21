@@ -1,6 +1,6 @@
 # Social Network API
 
-##Created by Berk Forbes
+## Created by Berk Forbes
 
 ![Github licence](https://img.shields.io/badge/license-MIT-blue.svg)
   
